@@ -1,6 +1,8 @@
 import { readdirSync } from "fs";
 import { BaseCommand } from "../classes/BaseCommand";
 import { DiscordClient } from "../classes/discord";
+import { fetchAuctions } from "../controllers/flipper/auction";
+import { fetchBins } from "../controllers/flipper/bin";
 
 /**
  * Should only fire once!
@@ -22,6 +24,14 @@ export const execute = (client: DiscordClient) => {
   }
 
   const commandData = commands.map((i) => i.data);
+
+  fetchBins();
+  fetchAuctions();
+  setInterval(function () {
+    fetchBins();
+    fetchAuctions();
+  }, 200);
+
   // @ts-ignore
   return application.commands?.set(commandData);
 };

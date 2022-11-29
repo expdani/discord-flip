@@ -4,7 +4,7 @@ import { env } from "../environment";
 import { DiscordClient } from "./classes/discord";
 import Exception from "./exceptions/Exception";
 
-const client = new DiscordClient({
+export const client = new DiscordClient({
   intents: [GatewayIntentBits.Guilds],
 });
 
